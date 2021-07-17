@@ -1,0 +1,25 @@
+#!/bin/bash
+
+ROMS=($(ls ~/roms))
+declare -A FILENAMES;
+declare -A EXTENSIONS;
+declare -A PRETTYNAMES;
+
+for ROM in ${ROMS[@]}; do
+    EXT="${ROM#*.}"
+    FILENAME="${ROM%%.*}"
+    PRETTY=$(ccase -t title $FILENAME)
+    PRETTYNAMES[${#PRETTYNAMES[*]}]=$PRETTY
+    FILENAMES[$PRETTY]=$ROM
+    EXTENSIONS[$PRETTY]=$EXT
+done
+
+SELECTED=$(printf "%s\n" "${PRETTYNAMES[@]}" | rofi -dmenu -p "ROM" -i)
+
+EXT=${EXTENSIONS[$SELECTED]}
+FILE=${FILENAMES[$SELECTED]}
+
+case $EXT in
+    "z64") mupen64plus $HOME/roms/$FILE ;;
+    "n64") mupen64plus $HOME/roms/$FILE ;;
+esac

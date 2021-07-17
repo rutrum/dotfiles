@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# First argument is + or - to add or subtract brightness
+
+CURRENT=$(cat /sys/class/backlight/intel_backlight/brightness)
+
+case $1 in
+    +) NEW=$(($CURRENT+100)) ;;
+    -) NEW=$(($CURRENT-100)) ;;
+esac
+
+if [[ $1 -gt 199 && $1 -lt 7501 ]]; then
+    NEW=$1
+fi
+
+if [ ! -z $NEW ]; then
+    sudo bash -c "echo $NEW >> /sys/class/backlight/intel_backlight/brightness"
+    CURRENT=$NEW
+fi
+
+echo $CURRENT

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+declare -A classes
+classes["Bible"]="992146213"
+classes["Stats"]="3179408267"
+classes["CS Tutor"]="869346631"
+classes["Math Tutor"]="3686862816"
+classes["TA"]="596810995"
+classes["DS210"]="329583123"
+classes["Epics"]="510365097"
+classes["Pickleball"]="643521860"
+classes["Guide Dawg"]="2291596995"
+
+prompt=""
+
+for class in "${!classes[@]}"; do
+    prompt=$prompt$class"\n"
+done
+prompt=${prompt::-2} # removes last newline
+
+export selection=$(echo -e "$prompt" | rofi -dmenu -i -p "Join Zoom Meeting")
+
+ID=${classes[$selection]}
+
+[ -z $ID ] && exit 0 # If nothing was selected, quit
+URL="zoommtg://zoom.us/join?action=join&confno=$ID"
+
+xdg-open $URL

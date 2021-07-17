@@ -1,0 +1,13 @@
+#!/bin/bash
+
+COMMAND=$1
+FILE=$2
+
+$COMMAND
+echo "Waiting for file changes..."
+
+inotifywait -q -m -e close_write $FILE |
+while read -r filename event; do
+  $COMMAND
+  echo "Waiting for file changes..."
+done

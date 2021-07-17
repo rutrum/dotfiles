@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# First argument is + or - to add or subtract volume
+
+case $HOSTNAME in
+    rumbox) SOUNDOUT="alsa_output.pci-0000_00_1b.0.analog-stereo" ;;
+    rumprism) SOUNDOUT="alsa_output.pci-0000_00_1f.3.analog-stereo" ;;
+    rumtower) SOUNDOUT="alsa_output.pci-0000_28_00.4.analog-surround-71" ;;
+esac
+
+case $1 in
+    +) pactl set-sink-volume $SOUNDOUT +5% ;;
+    -) pactl set-sink-volume $SOUNDOUT -5% ;;
+    *) if [[ $1 -gt 1 && $1 -lt 101 ]]; then
+        pactl set-sink-volume $SOUNDOUT $1%
+    fi
+esac
+
+case $HOSTNAME in
+    rumbox) echo $(amixer -c 1 -M -D pulse get Master | grep -o -m 1 -E [[:digit:]]+%) ;;
+    rumprism) echo $(amixer -c 0 -M -D pulse get Master | grep -o -m 1 -E [[:digit:]]+%) ;;
+    rumtower) echo $(amixer -c 0 -M -D pulse get Master | grep -o -m 1 -E [[:digit:]]+%) ;;
+esac

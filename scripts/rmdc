@@ -1,0 +1,5 @@
+if [ $# -lt 1 ]; then
+    echo "Enter rmd file to compile"
+else
+    echo "require(rmarkdown); render('$(pwd)/$1')" | R --vanilla
+fi

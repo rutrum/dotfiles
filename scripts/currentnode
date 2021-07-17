@@ -1,0 +1,11 @@
+get_title() {
+    bspc query -T -d -n | 
+    jq . | 
+    grep className |
+    awk -F'"' '{print $4}'
+}
+
+get_title
+bspc subscribe node_focus | while read line; do 
+    get_title
+done
