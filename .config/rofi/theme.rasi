@@ -1,0 +1,84 @@
+// Important information here: 
+// https://github.com/DaveDavenport/rofi/blob/1ab3e571eca1768d437246ca6ec09f44432b0e20/doc/rofi-theme.5.markdown
+
+* {
+    background-color: #111111;
+    text-color: #bcc;
+    font: "DejaVuSans 12";
+}
+
+window {
+    width: 600px;
+    background-color: #111111;
+    padding: 0;
+}
+
+mainbox {
+    border:  2;
+    border-color: #ededed;
+    padding: 6;
+}
+
+message {
+    border:       1px dash 0px 0px ;
+    padding:      0px ;
+}
+
+listview {
+    columns:      1;
+    fixed-height: 0;
+    border:       0;
+    spacing:      1;
+    scrollbar:    true;
+    padding:      0px 0px 0px;
+}
+
+scrollbar {
+    width: 0;
+    border: 0;
+    handle-width: 0;
+    padding: 0;
+}
+
+inputbar {
+    spacing:    0;
+    text-color: @normal-foreground;
+    padding:    0px ;
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+case-indicator {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+entry {
+    spacing:    2;
+    text-color: @normal-foreground;
+}
+
+prompt {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0 0.3em;
+    text-color: inherit;
+}
+
+#element {
+    padding: 2px;
+    margin: 0px;
+}
+
+#element.normal {
+/*    background-color: #a87ce655;*/
+}
+
+#element.selected {
+    /*background-color: #be9ded88;*/
+    background-color: #ff333388;
+}

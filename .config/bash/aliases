@@ -1,0 +1,56 @@
+# Foreign servers
+alias thomas="ssh dpurdum@thomas.butler.edu"
+alias bigdawg="ssh dpurdum@bigdawg.butler.edu"
+alias cs435="ssh dpurdum@cs435.butler.edu"
+alias pizero="ssh pi@192.168.1.139"
+alias poopdeck="ssh dave@47.227.65.42"
+alias azorious="ssh dave@azorious"
+alias vultr="ssh root@144.202.23.250"
+
+# Applications
+alias clonehero='~/clonehero/Clone\ Hero.x86_64 &'
+alias trello="~/trello/Trello &"
+
+# Path related
+alias ll='ls -lhF'
+alias la='ls -A'
+alias l='ls -CF'
+alias lsr="ls -RA"
+
+# Shortcuts to common places
+alias stat='cd ~/barracuda/iu/stats; ls'
+alias viz='cd ~/barracuda/iu/viz; ls'
+
+alias hdmi='xrandr --output HDMI1 --auto --same-as eDP1 --mode 1920x1080'
+alias pubip='curl ifconfig.me; echo'
+
+alias league="sudo bash -c 'echo \"abi.vsyscall32 = 0\" >> /etc/sysctl.conf && sysctl -p'"
+
+alias py=python3
+alias pip=pip3
+alias R="R -q"
+#alias R="ion -i -c math"
+alias clone="(pwd | alacritty & disown \$!)"
+alias df="df -h"
+
+alias vpn="sudo openconnect buconnect.butler.edu -u dpurdum"
+
+alias j="just"
+alias v="nvim"
+
+alias ealias="nvim ~/.config/bash/aliases && source ~/.bashrc"
+alias ebash="nvim ~/.bashrc && source ~/.bashrc"
+
+alias hc="herbstclient"
+
+alias cpuspeeds="watch -n.1 \"cat /proc/cpuinfo | grep \\\"^[c]pu MHz\\\"\""
+
+alias draw="brave-browser autodraw.com"
+
+alias du="du -h"
+
+alias rgf="rg --files -L 2> /dev/null | rg -i"
+alias t="tmux"
+
+# Dotfile management
+alias dfgit='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
