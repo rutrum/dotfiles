@@ -9,11 +9,14 @@ hc() {
 
 hc emit_hook reload
 
-/home/rutrum/dotfiles/bin/startpolybar
+/home/rutrum/scripts/startpolybar
 pkill compton
 compton &
 feh --bg-fill /home/rutrum/barracuda/wallpapers/mushroom_forest_fixed.png
 xrandr --output DP-0 --mode 3840x1600 --rate 120
+
+# start syncthing
+syncthing serve --no-browser --logfile=default
 
 # remove all existing keybindings
 hc keyunbind --all
