@@ -1,27 +1,3 @@
-#    ____        _                        _     
-#   |  _ \ _   _| |_ _ __ _   _ _ __ ___ ( )___ 
-#   | |_) | | | | __| '__| | | | '_ ` _ \|// __|
-#   |  _ <| |_| | |_| |  | |_| | | | | | | \__ \
-#   |_|_\_\\__,_|\__|_|_  \__,_|_| |_| |_| |___/
-#     | |__   __ _ ___| |__  _ __ ___           
-#     | '_ \ / _` / __| '_ \| '__/ __|          
-#    _| |_) | (_| \__ \ | | | | | (__           
-#   (_)_.__/ \__,_|___/_| |_|_|  \___|          
-#                                               
-
-# This config file contains the following sections
-
-# GENERAL: mostly defaults from generated .bashrc
-# ALIASES: list of aliases
-# FUNCTIONS: list of functions
-
-#     ____                           _ 
-#    / ___| ___ _ __   ___ _ __ __ _| |
-#   | |  _ / _ \ '_ \ / _ \ '__/ _` | |
-#   | |_| |  __/ | | |  __/ | | (_| | |
-#    \____|\___|_| |_|\___|_|  \__,_|_|
-#                                      
-
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -58,6 +34,7 @@ short_dir () {
     fi
     echo -n $FILEPATH
 }
+
 next_line () {
     if [ $(tput cols) -ge 50 ]; then
         printf " "
@@ -65,7 +42,8 @@ next_line () {
         echo -n " "
     fi
 }
-PS1='\[\033[01;38;5;160m\]\u\[\033[00m\] \[\033[01;38;5;172m\]$(short_dir)\[\033[00m\]\001$( next_line )\002\$ '
+
+PS1='\[\033[01;38;5;160m\]\u\[\033[00m\] \[\033[01;38;5;172m\]$(short_dir)$([ \j -gt 0 ] && echo " [\j]")\[\033[00m\]\001$( next_line )\002\$ '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -102,6 +80,7 @@ PATH=$PATH:$HOME/dotfiles/scripts
 
 # Add Cargo bin to $PATH for Rust
 PATH=$PATH:$HOME/.cargo/env
+source /home/rutrum/.cargo/env
 
 # NPM stuff
 PATH=$PATH:$HOME/.npm/bin
@@ -115,68 +94,19 @@ PATH=$PATH:$HOME/bin
 # ^S no longer pauses terminal
 stty -ixon
 
-#       _    _ _                     
-#      / \  | (_) __ _ ___  ___  ___ 
-#     / _ \ | | |/ _` / __|/ _ \/ __|
-#    / ___ \| | | (_| \__ \  __/\__ \
-#   /_/   \_\_|_|\__,_|___/\___||___/
-#                                    
-
+# Load aliases file
 if [ -f ~/.config/bash/aliases ]; then
     . ~/.config/bash/aliases
 fi
-
-#    _____                 _   _                 
-#   |  ___|   _ _ __   ___| |_(_) ___  _ __  ___ 
-#   | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
-#   |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
-#   |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
-#                                                
 
 # Opens a file in the default program
 open () {
     xdg-open "$1" & &> /dev/null
 }
 
-# Generates a grid of all the xterm-256color pallet
-colorgrid ()
-{
-    iter=16
-    while [ $iter -lt 52 ]
-    do
-        second=$[$iter+36]
-        third=$[$second+36]
-        four=$[$third+36]
-        five=$[$four+36]
-        six=$[$five+36]
-        seven=$[$six+36]
-        if [ $seven -gt 250 ];then seven=$[$seven-251]; fi
-
-        echo -en "\033[38;5;$(echo $iter)m█ "
-        printf "%03d" $iter
-        echo -en "   \033[38;5;$(echo $second)m█ "
-        printf "%03d" $second
-        echo -en "   \033[38;5;$(echo $third)m█ "
-        printf "%03d" $third
-        echo -en "   \033[38;5;$(echo $four)m█ "
-        printf "%03d" $four
-        echo -en "   \033[38;5;$(echo $five)m█ "
-        printf "%03d" $five
-        echo -en "   \033[38;5;$(echo $six)m█ "
-        printf "%03d" $six
-        echo -en "   \033[38;5;$(echo $seven)m█ "
-        printf "%03d" $seven
-
-        iter=$[$iter+1]
-        printf '\r\n'
-    done
-}
-
 sshdocker () {
     docker exec -it "$1" /bin/bash
 }
-
-source /home/rutrum/.cargo/env
 
 rmdc () {
     if [ $# -lt 1 ]; then
@@ -195,4 +125,15 @@ latexify () {
     zathura "$file"pdf &
 
     nvim $1
+}
+
+# Search transcripts (for HPC class)
+strans () {
+    keyword=$1
+    context=2
+    if [ $# -gt 1 ]; then
+        context=$2
+    fi
+
+    rg -i "$keyword" | sed -e 's/\. \([A-Z]\)/\n\1/g' | rg -i "$keyword" -C $context
 }

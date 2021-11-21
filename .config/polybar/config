@@ -48,11 +48,6 @@ wm-restack = bspwm
 ; fixed-center = false 
 
 
-[module/test]
-type = custom/script
-
-exec = echo 'test'
-
 [module/ewmh]
 type = internal/xworkspaces
 
