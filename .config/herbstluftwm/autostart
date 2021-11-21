@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-# swallowing?
-pgrep -fl 'pidswallow -gl' || pidswallow -gl
-
 hc() {
     herbstclient "$@"
 }
@@ -12,11 +9,9 @@ hc emit_hook reload
 /home/rutrum/scripts/startpolybar
 pkill compton
 compton &
-feh --bg-fill /home/rutrum/barracuda/wallpapers/mushroom_forest_fixed.png
+# feh --bg-fill /home/rutrum/barracuda/wallpapers/mushroom_forest_fixed.png
 xrandr --output DP-0 --mode 3840x1600 --rate 120
 
-# start syncthing
-syncthing serve --no-browser --logfile=default
 
 # remove all existing keybindings
 hc keyunbind --all
@@ -115,7 +110,7 @@ hc keybind $Mod-p pseudotile toggle
 #            or , and . compare tags.focus.curframe_wcount = 2                   \
 #                     . cycle_layout +1 grid horizontal vertical max \
 #               , cycle_layout +1
-hc keybind $Mod-period cycle_layout +1 horizontal grid
+hc keybind $Mod-period cycle_layout +1 horizontal vertical grid
 
 # mouse
 hc mouseunbind --all

@@ -1,6 +1,7 @@
-#!bin/bash
+#!/bin/bash
 
 # Checks to see if battery is low
 # If it is low, do stuff.  Like notify send
 
 BATLEVEL=`acpi -b | grep -P -o '[0-9]+(?=%)'`
+echo $BATLEVEL
