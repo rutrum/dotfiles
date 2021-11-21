@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# Converts a markdown file into latex
+# use --include-in-header to add \usepackage{my_default.sty}
+
+if [ $# -lt 1 ]; then
+    echo "Enter markdown file to convert to pdf."
+    echo "pml input.md <output.pdf>"
+    exit 1
+fi
+
+input=$1
+input_folder=$(dirname "$input")
+
+if [ $# -lt 2 ]; then
+    output=$(basename -s .md "$1")
+    output_path="$input_folder/$output.pdf"
+else
+    # If folder, make filename same as input
+    if [[ -d $2 ]]; then
+        output=$(basename -s .md "$1")
+        output_path="$2/$output.pdf"
+    else
+        # it's a file, so just call it that
+        output_path=$2
+    fi
+fi
+
+pandoc -f markdown -t latex -o "$output_path" "$input" && 
+    echo $output_path

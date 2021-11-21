@@ -6,6 +6,7 @@ alias pizero="ssh pi@192.168.1.139"
 alias poopdeck="ssh dave@47.227.65.42"
 alias azorious="ssh dave@azorious"
 alias vultr="ssh root@144.202.23.250"
+alias bigred="ssh dpurdum@bigred3.uits.iu.edu -X"
 
 # Applications
 alias clonehero='~/clonehero/Clone\ Hero.x86_64 &'
@@ -18,8 +19,8 @@ alias l='ls -CF'
 alias lsr="ls -RA"
 
 # Shortcuts to common places
-alias stat='cd ~/barracuda/iu/stats; ls'
-alias viz='cd ~/barracuda/iu/viz; ls'
+alias hpc='cd ~/barracuda/iu/hpc; ls'
+alias algs='cd ~/barracuda/iu/algs; ls'
 
 alias hdmi='xrandr --output HDMI1 --auto --same-as eDP1 --mode 1920x1080'
 alias pubip='curl ifconfig.me; echo'
@@ -45,12 +46,18 @@ alias hc="herbstclient"
 
 alias cpuspeeds="watch -n.1 \"cat /proc/cpuinfo | grep \\\"^[c]pu MHz\\\"\""
 
+
 alias draw="brave-browser autodraw.com"
 
+alias cp="cp -n" # don't overwrite existing files
 alias du="du -h"
 
 alias rgf="rg --files -L 2> /dev/null | rg -i"
+alias rg="rg --no-messages"
 alias t="tmux"
 
 # Dotfile management
 alias dfgit='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias sbash="source ~/.bashrc"
+
+alias watchpml="watchexec -e md -- $HOME/scripts/pml"
