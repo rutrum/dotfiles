@@ -19,14 +19,13 @@ hc emit_hook reload
 pkill picom
 picom &
 
-# Set background
-feh --bg-fill /home/rutrum/barracuda/media/wallpapers/mushroom_forest_fixed.png
+if [ "$HOSTNAME" = "rumtower" ]; then
+    feh --bg-fill /home/rutrum/barracuda/media/wallpapers/mushroom_forest_fixed.png
+    xrandr --output DP-0 --mode 3840x1600 --rate 120
+else
+    # feh --bg-fill /home/rutrum/barracuda/media/wallpapers/mushroom_forest_fixed.png
+fi
 
-# Set resolution and framerate
-xrandr --output DP-0 --mode 3840x1600 --rate 120
-
-# start syncthing
-# syncthing serve --no-browser --logfile=default
 
 # remove all existing keybindings
 hc keyunbind --all
