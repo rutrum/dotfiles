@@ -1,6 +1,10 @@
 VAL=$(rg --files -L --no-ignore --no-messages --glob '!steamapps/*' --glob '!sync/*'\
-    | rg "\.pdf$|\.md$" --no-messages \
+    | rg "\.pdf$" --no-messages \
     | rofi -p "open" -i -dmenu)
+
+#VAL=$(rg --files -L --no-ignore --no-messages --glob '!steamapps/*' --glob '!sync/*'\
+#    | rg "\.pdf$|\.md$" --no-messages \
+#    | rofi -p "open" -i -dmenu)
 
 if [ ! -z "$VAL" ]; then
     case $VAL in

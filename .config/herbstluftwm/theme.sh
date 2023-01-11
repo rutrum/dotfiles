@@ -26,7 +26,7 @@ hc attr theme.active.inner_color '#3E4A00'
 hc attr theme.active.outer_color '#3E4A00'
 hc attr theme.background_color '#141414'
 
-hc set window_gap 0 
+hc set window_gap 0
 hc set frame_padding 0
 hc set smart_window_surroundings 1
 hc set smart_frame_surroundings 1

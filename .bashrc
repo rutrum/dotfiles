@@ -78,6 +78,9 @@ fi
 # Add ~/dotfiles/scripts to $PATH
 PATH=$PATH:$HOME/dotfiles/scripts
 
+# Tools for graphene os
+PATH=$PATH:$HOME/test/graphene/platform-tools
+
 # Add Cargo bin to $PATH for Rust
 PATH=$PATH:$HOME/.cargo/env
 source /home/rutrum/.cargo/env
@@ -90,6 +93,13 @@ PATH=$PATH:$HOME/scripts
 
 # Add ~/bin 
 PATH=$PATH:$HOME/bin
+
+PATH=$PATH:$HOME/.local/share/coursier/bin
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+
+# install go packages in not the dumbest fucking place
+export GOPATH=$HOME/.local/go
 
 # ^S no longer pauses terminal
 stty -ixon
@@ -104,7 +114,7 @@ open () {
     xdg-open "$1" & &> /dev/null
 }
 
-sshdocker () {
+dockerssh () {
     docker exec -it "$1" /bin/bash
 }
 
@@ -137,3 +147,24 @@ strans () {
 
     rg -i "$keyword" | sed -e 's/\. \([A-Z]\)/\n\1/g' | rg -i "$keyword" -C $context
 }
+
+watchpml () {
+    watchexec -e md -- "$HOME/scripts/pml" $1 >/dev/null 2>&1 &
+}
+
+share () {
+    if [ $# -lt 1 ]; then
+        echo "Enter file to share on share.rutrum.net."
+    else
+        uploadpath=$1
+        uploadname=$(pathmut name $uploadpath)
+        scp $uploadpath rutrum@144.202.23.250:/mnt/blockstorage/share/
+        url="https://share.rutrum.net/$uploadname"
+        echo -n "$url" | xclip -selection clipboard
+        echo "File uploaded to"
+        echo $url
+        echo "Url is in your clipboard."
+    fi
+}
+
+eval "$(zoxide init bash)"

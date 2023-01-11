@@ -5,7 +5,7 @@ alias cs435="ssh dpurdum@cs435.butler.edu"
 alias pizero="ssh pi@192.168.1.139"
 alias poopdeck="ssh dave@47.227.65.42"
 alias azorious="ssh dave@azorious"
-alias vultr="ssh root@144.202.23.250"
+alias vultr="ssh rutrum@144.202.23.250"
 alias bigred="ssh dpurdum@bigred3.uits.iu.edu -X"
 
 # Applications
@@ -17,6 +17,8 @@ alias ll='ls -lhF'
 alias la='ls -A'
 alias l='ls -CF'
 alias lsr="ls -RA"
+
+alias less="less -R"
 
 # Shortcuts to common places
 alias hpc='cd ~/barracuda/iu/hpc; ls'
@@ -49,7 +51,8 @@ alias cpuspeeds="watch -n.1 \"cat /proc/cpuinfo | grep \\\"^[c]pu MHz\\\"\""
 
 alias draw="brave-browser autodraw.com"
 
-alias cp="cp -n" # don't overwrite existing files
+alias cp="cp -i" # don't overwrite existing files
+alias mv="mv -i" # prompt before overwrite
 alias du="du -h"
 
 alias rgf="rg --files -L 2> /dev/null | rg -i"
@@ -60,4 +63,6 @@ alias t="tmux"
 alias dfgit='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias sbash="source ~/.bashrc"
 
-alias watchpml="watchexec -e md -- $HOME/scripts/pml"
+alias iu='cd /home/rutrum/barracuda/school/iu'
+
+alias resetwifi='nmcli dev disconnect wlo1; nmcli dev wifi connect scala password 5yearpantsplan'

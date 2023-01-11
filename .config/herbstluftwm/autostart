@@ -16,11 +16,11 @@ hc emit_hook reload
 /home/rutrum/scripts/startpolybar
 
 # Restart compositing
-pkill compton
-compton &
+pkill picom
+picom &
 
 # Set background
-feh --bg-fill /home/rutrum/barracuda/wallpapers/mushroom_forest_fixed.png
+feh --bg-fill /home/rutrum/barracuda/media/wallpapers/mushroom_forest_fixed.png
 
 # Set resolution and framerate
 xrandr --output DP-0 --mode 3840x1600 --rate 120
@@ -70,4 +70,4 @@ hc detect_monitors
 #done
 
 # Sets padding of monitor 0 with 0,0,30,0
-hc pad 0 0 0 30 0
+hc pad 0 0 0 35 0

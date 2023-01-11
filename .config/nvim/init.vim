@@ -64,8 +64,10 @@ set history=1000
 autocmd FileChangedShellPost *
   \ echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None
 
+" needed for polyglot? its in the example
+set nocompatible
+
 call plug#begin('~/.local/share/nvim/plugins')
-Plug 'vmchale/just-vim'
 Plug 'bfrg/vim-cpp-modern'
 Plug 'othree/html5.vim'
 Plug 'elmcast/elm-vim'
@@ -74,6 +76,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'dpelle/vim-languagetool'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'rust-lang/rust.vim'
+Plug 'sheerun/vim-polyglot'
+Plug 'NoahTheDuke/vim-just'
+Plug 'junegunn/vim-easy-align'
 call plug#end()
 
 syntax enable
@@ -83,3 +88,11 @@ filetype plugin indent on  " Suggested by rust.vim
 set hidden
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
+
+" Don't highlight tailing whitespace
+let g:python_highlight_space_errors = 1
+
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)

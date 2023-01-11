@@ -76,12 +76,14 @@ done
 # hc keybind $Mod-comma  use_index -1 --skip-visible
 
 # dmenu
-hc keybind $Mod-d spawn rofi -show run -theme theme
+hc keybind $Mod-d spawn rofi -show drun -theme theme
 hc keybind $Mod-a spawn rofi -show window -theme theme
 hc keybind $Mod-o spawn /home/rutrum/scripts/open_pdf.sh
 hc keybind $Mod-i spawn /home/rutrum/scripts/edit_note.sh
+hc keybind $Mod-u spawn /home/rutrum/scripts/open_project.sh
 
 hc keybind $Mod-m spawn flameshot gui
+hc keybind $Mod-Shift-p spawn 'notify-send "Starting 5 min timer" && /home/rutrum/scripts/countdown 300'
 
 # layouting
 hc keybind $Mod-r remove
